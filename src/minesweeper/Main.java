@@ -7,15 +7,14 @@ import java.util.Scanner;
 
 public class Main {
     private static final int SIDE = 9;
-    private static GameObject[][] gameField = new GameObject[SIDE][SIDE];
-    private static Scanner scanner = new Scanner(System.in);
-    private static Random random = new Random();
+    private static final GameObject[][] gameField = new GameObject[SIDE][SIDE];
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final Random random = new Random();
     private static boolean isFirstTurn = true;
     private static boolean steppedOnMine = false;
     private static boolean minesCreated = false;
 
     public static void main(String[] args) {
-
         System.out.print("How many mines do you want on the field? ");
         int numOfMines = scanner.nextInt();
 
