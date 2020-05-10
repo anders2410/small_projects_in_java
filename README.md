@@ -1,4 +1,4 @@
-# Small games in Java!
+# Small projects in Java!
 These are some small games that I've created in Java by following guidelines 
 from Hyperskill.org.
 
