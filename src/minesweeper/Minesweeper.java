@@ -1,24 +1,33 @@
 package minesweeper;
 
+import main.Game;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
-    private static final int SIDE = 9;
-    private static final GameObject[][] gameField = new GameObject[SIDE][SIDE];
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final Random random = new Random();
-    private static boolean isFirstTurn = true;
-    private static boolean steppedOnMine = false;
-    private static boolean minesCreated = false;
+public class Minesweeper implements Game {
+    private final GameObject[][] gameField;
+    private final int rows;
+    private final int columns;
 
-    public static void main(String[] args) {
+    private boolean isFirstTurn = true;
+    private boolean steppedOnMine = false;
+    private boolean minesCreated = false;
+
+    public Minesweeper(int rows, int columns) {
+        this.rows = rows;
+        this.columns = columns;
+        gameField = new GameObject[rows][columns];
+        createGame();
+    }
+
+    public void startGame() {
         System.out.print("How many mines do you want on the field? ");
+        Scanner scanner = new Scanner(System.in);
         int numOfMines = scanner.nextInt();
 
-        createGame();
         displayField();
 
         while (true) {
@@ -58,10 +67,10 @@ public class Main {
         }
     }
 
-    private static void exploreMinefield(int yInput, int xInput) {
-        gameField[yInput][xInput].isFree = true;
-        gameField[yInput][xInput].isOpen = true;
-        for (GameObject neighbour : getNeighbors(gameField[yInput][xInput])) {
+    public void exploreMinefield(int y, int x) {
+        gameField[y][x].isFree = true;
+        gameField[y][x].isOpen = true;
+        for (GameObject neighbour : getNeighbors(gameField[y][x])) {
             if (neighbour.countMineNeighbors == '0' && !neighbour.isFree && !neighbour.isMine) {
                 neighbour.isFree = true;
                 neighbour.isOpen = true;
@@ -72,7 +81,7 @@ public class Main {
         }
     }
 
-    public static void displayField() {
+    public void displayField() {
         System.out.println(" |123456789|");
         System.out.println("-|---------|");
         for (int row = 0; row < 9; row++) {
@@ -96,7 +105,7 @@ public class Main {
         System.out.println("-|---------|");
     }
 
-    private static void whichCharToPrint(GameObject g) {
+    private void whichCharToPrint(GameObject g) {
         if (g.isOpen) {
             if (g.countMineNeighbors > '0') {
                 System.out.print(g.countMineNeighbors);
@@ -125,23 +134,24 @@ public class Main {
         }
     }
 
-    public static void createGame() {
-        for (int row = 0; row < SIDE; row++) {
-            for (int col = 0; col < SIDE; col++) {
+    private void createGame() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
                 gameField[row][col] = new GameObject(col, row, false);
             }
         }
     }
 
-    private static void createMines(int mines, int y, int x) {
+    public void createMines(int mines, int y, int x) {
+        Random random = new Random();
         minesCreated = true;
         for (int i = 0; i < mines; i++) {
-            int col = random.nextInt(SIDE);
-            int row = random.nextInt(SIDE);
+            int col = random.nextInt(rows);
+            int row = random.nextInt(columns);
             while (true) {
                 if (gameField[row][col].isMine || (y == row && x == col)) {
-                    col = random.nextInt(SIDE);
-                    row = random.nextInt(SIDE);
+                    col = random.nextInt(rows);
+                    row = random.nextInt(columns);
                 } else {
                     gameField[row][col].isMine = true;
                     break;
@@ -151,7 +161,7 @@ public class Main {
         countMineNeighbors();
     }
 
-    public static boolean isGameWon() {
+    public boolean isGameWon() {
         if (minesCreated) {
             boolean firstWinCondition = true;
             boolean secondWinCondition = true;
@@ -174,9 +184,9 @@ public class Main {
         return false;
     }
 
-    private static void countMineNeighbors() {
-        for (int row = 0; row < SIDE; row++) {
-            for (int col = 0; col < SIDE; col++) {
+    private void countMineNeighbors() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
                 if (!gameField[row][col].isMine) {
                     List<GameObject> result = getNeighbors(gameField[row][col]);
                     for (GameObject neighbor : result) {
@@ -189,14 +199,14 @@ public class Main {
         }
     }
 
-    private static List<GameObject> getNeighbors(GameObject gameObject) {
+    private List<GameObject> getNeighbors(GameObject gameObject) {
         List<GameObject> result = new ArrayList<>();
         for (int row = gameObject.y - 1; row <= gameObject.y + 1; row++) {
             for (int col = gameObject.x - 1; col <= gameObject.x + 1; col++) {
-                if (row < 0 || row >= SIDE) {
+                if (row < 0 || row >= rows) {
                     continue;
                 }
-                if (col < 0 || col >= SIDE) {
+                if (col < 0 || col >= columns) {
                     continue;
                 }
                 if (gameField[row][col] == gameObject) {
@@ -208,5 +218,3 @@ public class Main {
         return result;
     }
 }
-
-
