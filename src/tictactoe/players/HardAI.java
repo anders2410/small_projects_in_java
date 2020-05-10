@@ -3,7 +3,6 @@ package tictactoe.players;
 import tictactoe.Field;
 import tictactoe.Point;
 import tictactoe.Symbol;
-import tictactoe.players.Player;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,6 +10,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+// TODO: 10/05/2020 Implement this my own way!
 public class HardAI implements Player {
     final List<Point> iterationOrder;
 
