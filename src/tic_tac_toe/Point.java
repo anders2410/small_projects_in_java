@@ -1,4 +1,4 @@
-package tictactoe;
+package tic_tac_toe;
 
 public class Point {
     private final int x;

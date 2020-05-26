@@ -1,7 +1,7 @@
-package tictactoe;
+package tic_tac_toe;
 
 import main.Game;
-import tictactoe.players.Player;
+import tic_tac_toe.players.Player;
 
 import java.util.Scanner;
 

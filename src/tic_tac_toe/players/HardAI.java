@@ -1,8 +1,8 @@
-package tictactoe.players;
+package tic_tac_toe.players;
 
-import tictactoe.Field;
-import tictactoe.Point;
-import tictactoe.Symbol;
+import tic_tac_toe.Field;
+import tic_tac_toe.Point;
+import tic_tac_toe.Symbol;
 
 import java.util.ArrayList;
 import java.util.Comparator;

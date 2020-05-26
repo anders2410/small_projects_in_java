@@ -1,8 +1,7 @@
-package tictactoe.players;
+package tic_tac_toe.players;
 
-import tictactoe.Field;
-import tictactoe.Symbol;
-import tictactoe.players.Player;
+import tic_tac_toe.Field;
+import tic_tac_toe.Symbol;
 
 public class MediumAI implements Player {
     @Override

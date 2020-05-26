@@ -1,4 +1,4 @@
-package tictactoe;
+package tic_tac_toe;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

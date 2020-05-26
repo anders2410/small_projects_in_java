@@ -1,7 +1,7 @@
 package main;
 
 import minesweeper.Minesweeper;
-import tictactoe.TicTacToe;
+import tic_tac_toe.TicTacToe;
 
 public class Main {
     public static void main(String[] args) {

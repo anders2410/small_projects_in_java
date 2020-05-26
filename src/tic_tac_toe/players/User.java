@@ -1,11 +1,13 @@
-package tictactoe.players;
+package tic_tac_toe.players;
 
-import tictactoe.Field;
-import tictactoe.players.Player;
-
+import tic_tac_toe.Field;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+/**
+ *
+ */
 public class User implements Player {
     @Override
     public void move(Field field) {

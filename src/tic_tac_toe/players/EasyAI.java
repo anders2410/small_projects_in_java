@@ -1,6 +1,6 @@
-package tictactoe.players;
+package tic_tac_toe.players;
 
-import tictactoe.Field;
+import tic_tac_toe.Field;
 
 public class EasyAI implements Player {
 

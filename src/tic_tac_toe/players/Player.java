@@ -1,10 +1,12 @@
-package tictactoe.players;
+package tic_tac_toe.players;
 
-import tictactoe.*;
+import tic_tac_toe.*;
 
 import java.util.Random;
 
 public interface Player {
+    // Method to get the type of player you want.
+    // Using a static method so it can always be called.
     static Player of(String type) {
         switch (type) {
             case "easy":
@@ -22,6 +24,7 @@ public interface Player {
 
     void move(Field field);
 
+    // Defining default methods that always apply to all implementations of the Player Class.
     default void moveRandomly(Field field) {
         Random random = new Random();
         int x, y;
